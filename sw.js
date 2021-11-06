@@ -75,6 +75,7 @@ self.addEventListener('fetch', function (event) {
               .then((cache)=> {
                 cache.put(event.request, responseClone);
               })
+              .catch(err=>console.log(err))
 
             // return the original response
             return response;
