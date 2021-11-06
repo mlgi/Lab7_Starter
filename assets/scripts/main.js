@@ -58,6 +58,17 @@ function initializeServiceWorker() {
    *  TODO - Part 2 Step 1
    *  Initialize the service worker set up in sw.js
    */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load',() =>{
+      navigator.serviceWorker.register('/sw.js')
+        .then((registration)=> {
+          console.log('Lab 7 SW reg succesful with ', registration.scope);
+        },
+        (err)=> {
+          console.log('Lab 7 SW reg failed with ', err);
+        })
+    });
+  }
 }
 
 /**
