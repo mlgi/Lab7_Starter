@@ -60,7 +60,7 @@ function initializeServiceWorker() {
    */
   if ('serviceWorker' in navigator) {
     window.addEventListener('load',() =>{
-      navigator.serviceWorker.register('/sw.js')
+      navigator.serviceWorker.register('sw.js')
         .then((registration)=> {
           console.log('Lab 7 SW reg succesful with ', registration.scope);
         },
