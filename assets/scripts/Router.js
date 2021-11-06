@@ -67,7 +67,7 @@ export class Router {
      *     and URL + hash to history
      *  4. Finally, call the stored function for the given page
      */
-    if (this.hasOwnProperty(page)) {
+    if (!this[page]) {
       console.log(page + " does not exist.");
       return;
     }
