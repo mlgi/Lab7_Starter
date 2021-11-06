@@ -38,6 +38,7 @@ export class Router {
      * router instance using the 'this' keyword. Substitute 'home' for the variable
      * page
      */
+    this[page]=pageFunc;
   }
 
   /**
@@ -46,6 +47,7 @@ export class Router {
    * @param {String} page The name of the page to route to
    * @param {Boolean} statePopped True if this function is being called from a
    *                              'popstate' event instead of a normal card click
+   *
    */
   navigate(page, statePopped) {
     console.log(`navigate() function called, requested page: ${page}`);
@@ -65,5 +67,19 @@ export class Router {
      *     and URL + hash to history
      *  4. Finally, call the stored function for the given page
      */
+    if (this.hasOwnProperty(page)) {
+      console.log(page + " does not exist.");
+      return;
+    }
+
+    let hash = '#' + page;
+    if (page == 'home') hash = '';
+
+    if (!statePopped & window.location.hash != hash) {
+      history.pushState({page: page}, "ayylmao", hash);
+    }
+
+    this[page]();
+
   }
 }
